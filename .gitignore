@@ -13,6 +13,8 @@ bin/
 obj/
 *.txt
 dados/
+**/*.o
+**/*.exe
 
 
 # Packages #
