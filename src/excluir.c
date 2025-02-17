@@ -27,8 +27,7 @@ void excluirVeiculo() {
     while(fscanf(f, "%d,%19[^,],%f,%d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF){
         if (id == v.id) {
             encontrou = 1;
-        }
-        else {
+        } else {
             fprintf(tmp, "%d,%s,%.2f,%d\n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
             printf("%d\n", v.status);
         }
@@ -41,8 +40,7 @@ void excluirVeiculo() {
         remove("dados/Veiculos.txt");
         rename("dados/Tmp.txt", "dados/Veiculos.txt");
         printf("Veiculo excluido!");
-    }
-    else {
+    } else {
         remove("dados/Tmp.txt");
         printf("Veiculo nao encontrado.\n");
     }
@@ -58,13 +56,13 @@ void excluirFuncionario() {
 
     FILE *tmp = fopen("dados/Temp.txt", "w");
     if (tmp == NULL) {
-        printf("Erro ao criar arquivo temporário.\n");
+        printf("Erro ao criar arquivo temporario.\n");
         fclose(f);
         system("pause");
         exit(1);
     }
 
-    printf("Insira o id do funcionário a ser excluído: ");
+    printf("Insira o id do funcionario a ser excluido: ");
     int id;
     scanf("%d", &id);
     Funcionario func;
@@ -83,10 +81,10 @@ void excluirFuncionario() {
     if (encontrou) {
         remove("dados/Funcionarios.txt");
         rename("dados/Temp.txt", "dados/Funcionarios.txt");
-        printf("Funcionário excluído!\n");
+        printf("Funcionario excluido!\n");
     } else {
         remove("dados/Temp.txt");
-        printf("Funcionário não encontrado.\n");
+        printf("Funcionario não encontrado.\n");
     }
 }
 
@@ -101,13 +99,13 @@ void excluirCliente() {
 
     FILE *tmp = fopen("dados/Temp.txt", "w");
     if (tmp == NULL) {
-        printf("Erro ao criar arquivo temporário.\n");
+        printf("Erro ao criar arquivo temporario.\n");
         fclose(f);
         system("pause");
         exit(1);
     }
 
-    printf("Insira o id do cliente a ser excluído: ");
+    printf("Insira o id do cliente a ser excluido: ");
     int id;
     scanf("%d", &id);
     Cliente cliente;
@@ -130,7 +128,7 @@ void excluirCliente() {
     if (encontrou) {
         remove("dados/Clientes.txt");
         rename("dados/Temp.txt", "dados/Clientes.txt");
-        printf("Cliente excluído!\n");
+        printf("Cliente excluido!\n");
     } else {
         remove("dados/Temp.txt");
         printf("Cliente não encontrado.\n");
@@ -145,8 +143,42 @@ void excluirEntrega() {
         exit(1);
     }
 
+    FILE *tmp = fopen("dados/Temp.txt", "w");
+    if (tmp == NULL) {
+        printf("Erro ao criar arquivo temporario.\n");
+        fclose(f);
+        system("pause");
+        exit(1);
+    }
+
     printf("Insira o id da entrega a ser excluida: ");
     int id;
     scanf("%d", &id);
-    
+    Entrega entrega;
+    int encontrou = 0;
+    char origem[200];
+    char destino[200];
+
+    while (fscanf(f, "%d,%d,%d\n", &entrega.id, &entrega.tempo_estimado, &entrega.foi_concluida) != EOF) {
+        fgets(origem, sizeof(origem), f);
+        fgets(destino, sizeof(destino), f);
+
+        if (id == entrega.id) {
+            encontrou = 1;
+        } else {
+            fprintf(tmp, "%d,%d,%d\n%s%s", entrega.id, entrega.tempo_estimado, entrega.foi_concluida, origem, destino);
+        }
+    }
+
+    fclose(f);
+    fclose(tmp);
+
+    if (encontrou) {
+        remove("dados/Entregas.txt");
+        rename("dados/Temp.txt", "dados/Entregas.txt");
+        printf("Entrega excluida!\n");
+    } else {
+        remove("dados/Temp.txt");
+        printf("Entrega não encontrada.\n");
+    }
 }

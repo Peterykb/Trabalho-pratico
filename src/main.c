@@ -34,13 +34,11 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                     addVeiculo();
                 } else if (entidade == 2) {
                     addFuncionario();
-                }
-                else if(entidade == 3){
+                } else if(entidade == 3){
                     addEntrega();
                 } else if(entidade == 4) {
                     addCliente();
-                }
-                else {
+                } else {
                     printf("Opção inválida!\n");
                 }
                 break;
@@ -59,13 +57,11 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                     excluirVeiculo();
                 } else if (entidade == 2) {
                     excluirFuncionario();
-                }
-                else if(entidade == 3){
+                } else if(entidade == 3){
                     excluirEntrega();
                 } else if(entidade == 4) {
                     excluirCliente();
-                }
-                else {
+                } else {
                     printf("Opção inválida!\n");
                 }
                 break;
@@ -80,7 +76,5 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                 break;
         }
     } while (instrucao != 0);
-//AddVeiculo();
-//AddFuncionario();
     return 0;
 }
