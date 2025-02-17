@@ -4,5 +4,5 @@
 #include "../include/funcoes.h"
 
 void executarEntrega() {
-    printf("executando entrega\n");
+    
 }

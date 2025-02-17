@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <../include/funcoes.h>
 
-//terminal -> chcp 65001, compilar -> gcc main.c -o ..\bin\main.exe, executar -> ..\bin\main.exe
+//terminal -> chcp 65001
 
 //Menu principal
 
