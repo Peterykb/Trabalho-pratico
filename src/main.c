@@ -43,19 +43,19 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                 }
                 break;
             case 2:
-                //Visualizar();
+                // visualizar();
                 break;
             case 3:
-                //Editar();
+                // editar();
                 break;
             case 4:
-                //Excluir();
+                // excluir();
                 break;
             case 5:
-               // ExecutarEntrega();
+               executarEntrega();
                 break;
             case 6:
-                //GerarRelatorio();
+                gerarRelatorio();
                 break;
             default:
                 printf("Opção inválida!\n");

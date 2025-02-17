@@ -15,7 +15,7 @@ void addVeiculo(){
         exit(1);
     }
     Veiculo v;
-    while(fscanf(f,  "%d %s %f %d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF){
+    while(fscanf(f, "%d,%s,%f,%d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF){
         ultimo_id = v.id;
     }
 
@@ -28,25 +28,14 @@ void addVeiculo(){
     for(int i = 0; i < qnt; i++){
         printf("\n*** Informacões do veículo ***\n");
         v.id = ultimo_id + 1;
-        printf("Digite o tipo do veículo: ");
+        printf("Digite o tipo do veículo(sem espaços): ");
         scanf("%s", v.tipo_vec);
         printf("Digite a capacidade de carga: ");
         scanf("%f", &v.capacidade_carga);
         printf("Digite o status do veículo (0 para livre, 1 para ocupado): ");
         scanf("%d", &v.status);
         
-        fprintf(f, "%d %s %f %d \n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
-        while(fprintf(f, "%d %s %f %d \n", v.id, v.tipo_vec, v.capacidade_carga, v.status) < 0){
-            printf("Erro ao salvar o arquivo. Digite novamente.");
-            printf("Digite o tipo do veículo: ");
-            scanf("%s", v.tipo_vec);
-            printf("Digite a capacidade de carga: ");
-            scanf("%f", &v.capacidade_carga);
-            printf("Digite o status do veículo (0 para livre, 1 para ocupado): ");
-            scanf("%d", &v.status);
-            
-            fprintf(f, "%d %s %f %d \n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
-        }
+        fprintf(f, "%d,%s,%.2f,%d\n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
         ultimo_id++;
     }
     fclose(f);
@@ -61,7 +50,7 @@ void addFuncionario(){
     printf("Quantos funcionários deseja cadastrar?");
     scanf("%d", &qnt);
 
-    while(fscanf(f, "%d %s", &func.id, func.nome) == 2){
+    while(fscanf(f, "%d,%s", &func.id, func.nome) != EOF){
         ultimo_id = func.id;
     }
     
@@ -69,14 +58,7 @@ void addFuncionario(){
         func.id = ultimo_id + 1;
         printf("Digite o nome do Funcionário: ");
         scanf("%s", func.nome);
-
-        while(fprintf(f, "%d %s", func.id, func.nome) < 0){
-            printf("Erro ao salvar os dados. Tente novamente.");
-            printf("Digite o nome do Funcionário: ");
-            scanf("%s", func.nome);
-    
-            fprintf(f, "%d %s", func.id, func.nome);
-        }
+        fprintf(f, "%d,%s", func.id, func.nome);
         ultimo_id = func.id;
     }
     

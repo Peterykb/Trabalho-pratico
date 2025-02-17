@@ -8,8 +8,8 @@ void addVeiculo();
 void addFuncionario();
 void addEntrega();
 
-// Deletar
-void deletar();
+// Excluir
+void excluir();
 
 // Editar
 void editar();
