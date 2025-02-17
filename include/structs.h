@@ -31,6 +31,8 @@ typedef struct
 {
     int id;
     char nome[100];
+    char endereco[100];
+    int tipo_servico;
 }Cliente;
 
 #endif

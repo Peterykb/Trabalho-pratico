@@ -7,6 +7,7 @@
 void addVeiculo();
 void addFuncionario();
 void addEntrega();
+void addCliente();
 
 // Excluir
 void excluir();

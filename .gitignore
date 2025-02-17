@@ -11,6 +11,8 @@
 .vscode/
 bin/
 obj/
+*.txt
+dados/
 
 
 # Packages #
