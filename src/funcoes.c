@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <../include/funcoes.h>
 #include <../include/structs.h>
 
@@ -50,31 +51,42 @@ void addVeiculo(){
 
 void addFuncionario(){
     FILE *f = fopen("../dados/Funcionarios.txt", "a+");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
     int qnt = 0, ultimoid = 0;
     Funcionario func;
 
-    printf("Quantos funcionários deseja cadastrar?");
+    printf("Quantos funcionários deseja cadastrar? ");
     scanf("%d", &qnt);
-
-    while(fscanf(f, "%d %s", &func.id, func.nome) == 2){
+        
+    
+    while (fscanf(f, "%d,%s", &func.id, func.nome) != EOF) {
         ultimoid = func.id;
     }
-    
-    for(int i = 0; i < qnt; i++){
+
+    for (int i = 0; i < qnt; i++) {
         func.id = ultimoid + 1;
         printf("Digite o nome do Funcionário: ");
-        scanf("%s", func.nome);
+        // fgets(func.nome, sizeof(func.nome), stdin);
 
-        while(fprintf(f, "%d %s", func.id, func.nome) < 0){
-            printf("Erro ao salvar os dados. Tente novamente.");
-            printf("Digite o nome do Funcionário: ");
-            scanf("%s", func.nome);
-    
-            fprintf(f, "%d %s", func.id, func.nome);
+        Remover o '\n' do final da string, se presente
+        size_t len = strlen(func.nome);
+        if (len > 0 && func.nome[len - 1] == '\n') {
+            func.nome[len - 1] = '\0';
         }
+
+        if (fprintf(f, "%d,%s\n", func.id, func.nome) < 0) {
+            printf("Erro ao salvar os dados. Tente novamente.\n");
+            i--;  // Repete a entrada
+            continue;
+        }
+
         ultimoid = func.id;
     }
-    
+
     fclose(f);
-    printf("Funcionários salvos com sucesso!");
+    printf("Funcionários salvos com sucesso!\n");
 }

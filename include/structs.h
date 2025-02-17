@@ -10,6 +10,7 @@ typedef struct
     float capacidade_carga;
     int status; // 0 para livre, 1 para ocupado
 } Veiculo;
+
 typedef struct 
 {
     int id;
@@ -19,11 +20,13 @@ typedef struct
     int t_estimado; // em horas.
     int realizada; 
 } Entrega;
+
 typedef struct 
 {
     int id;
     char nome[100];
 } Funcionario;
+
 typedef struct 
 {
     int id;
