@@ -88,7 +88,6 @@ void excluirFuncionario() {
     }
 }
 
-// TODO
 void excluirCliente() {
     FILE *f = fopen("dados/Clientes.txt", "a+");
     if (f == NULL) {
