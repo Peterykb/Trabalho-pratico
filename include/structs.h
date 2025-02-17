@@ -14,11 +14,10 @@ typedef struct
 typedef struct 
 {
     int id;
+    int tempo_estimado; // em horas.
+    int foi_concluida;
     char origem[200]; 
     char destino[200];
-    char tipo_servico[20]; // economico, padrao, premium
-    int t_estimado; // em horas.
-    int realizada; 
 } Entrega;
 
 typedef struct 
@@ -32,7 +31,7 @@ typedef struct
     int id;
     char nome[100];
     char endereco[100];
-    int tipo_servico;
+    int tipo_servico; // economico, padrao, premium
 }Cliente;
 
 #endif
