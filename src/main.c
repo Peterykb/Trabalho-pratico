@@ -1,41 +1,68 @@
 #include <stdio.h>
-#include "../include/structs.h"
+#include "../include/funcoes.h"
 
-//Funções
-void AddVeiculo(){
-    FILE *f = fopen("../dados/Veiculos.txt", "a+");
-    int qnt = 0, ultimoid = 0;
-    Veiculo v;
-    while(fscanf(f,  "%d %s %f %d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) == 4){
-        ultimoid = v.id;
-    }
+//terminal -> chcp 65001, compilar -> gcc main.c -o ..\bin\main.exe, executar -> ..\bin\main.exe
 
-    printf("Quantos veículos deseja adicionar?\n");
-    scanf("%d", &qnt);
-    
-    printf("\n*** Informacões do veículo ***\n");
-    
-    for(int i = 0; i < qnt; i++){
-        v.id = ultimoid + 1;
-        printf("Digite o tipo do veículo: ");
-        scanf("%s", v.tipo_vec);
-        printf("Digite a capacidade de carga: ");
-        scanf("%f", &v.capacidade_carga);
-        printf("Digite o status do veículo (0 para livre, 1 para ocupado): ");
-        scanf("%d", &v.status);
-        
-        fprintf(f, "%d %s %f %d \n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
-        ultimoid++;
-    }
-    fclose(f);
-    printf("\nVeículo(s) salvo(s) com sucesso.\n");
-}
-
-// Main
+//Menu principal
 
 int main(){
+    
+int instrucao, entidade;
 
-
-AddVeiculo();
+printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
+ do {
+        printf("\n* O que deseja fazer? *\n");
+        printf("0 - Finalizar programa\n");
+        printf("1 - Adicionar\n");
+        printf("2 - Visualizar\n");
+        printf("3 - Editar\n");
+        printf("4 - Excluir\n");
+        printf("5 - Executar entrega\n");
+        printf("6 - Gerar Relatório\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &instrucao);
+        
+        switch (instrucao) {
+            case 0:
+                printf("Finalizando o programa...\n");
+                break;
+            case 1:
+                printf("\nEscolha a entidade para adicionar:\n");
+                printf("1 - Veículo\n2 - Funcionário\n3 - Entrega\n");
+                scanf("%d", &entidade);
+                if (entidade == 1) {
+                    AddVeiculo();
+                } else if (entidade == 2) {
+                    AddFuncionario();
+                }
+                else if(entidade == 3){
+                    //AddEntrega
+                }
+                else {
+                    printf("Opção inválida!\n");
+                }
+                break;
+            case 2:
+                //Visualizar();
+                break;
+            case 3:
+                //Editar();
+                break;
+            case 4:
+                //Excluir();
+                break;
+            case 5:
+               // ExecutarEntrega();
+                break;
+            case 6:
+                //GerarRelatorio();
+                break;
+            default:
+                printf("Opção inválida!\n");
+                break;
+        }
+    } while (instrucao != 0);
+//AddVeiculo();
+//AddFuncionario();
     return 0;
 }
