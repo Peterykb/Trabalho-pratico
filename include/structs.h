@@ -32,6 +32,6 @@ typedef struct
     char nome[100];
     char endereco[100];
     int tipo_servico; // economico, padrao, premium
-}Cliente;
+} Cliente;
 
 #endif

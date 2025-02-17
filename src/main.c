@@ -36,7 +36,7 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                     addFuncionario();
                 }
                 else if(entidade == 3){
-                    //AddEntrega
+                    addEntrega();
                 } else if(entidade == 4) {
                     addCliente();
                 }

@@ -1,0 +1,2 @@
+1,caminhonete,300.00,0
+2,carro,10.00,0

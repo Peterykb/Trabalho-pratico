@@ -159,7 +159,69 @@ void addCliente(){
 }
  
 void addEntrega(){
-    printf("fazendo entrega..");
-    // TODO
+    FILE *f = fopen("dados/Entregas.txt", "a+");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    int qnt = 0, ultimo_id = 0;
+    char linha[200];
+    char aux[200];
+    Entrega entrega;
+
+    printf("Quantos Entregas deseja cadastrar? ");
+    scanf("%d", &qnt);
+    getchar();
+        
+    
+    while (fgets(linha, sizeof(linha), f) != NULL) {
+        char linha2[200], linha3[200];
+        fgets(linha2, sizeof(linha2), f);
+        fgets(linha3, sizeof(linha3), f);
+        // processa linha e separa numero e nome
+        if (sscanf(linha, "%d,%d,%d", &entrega.id, &entrega.tempo_estimado, &entrega.foi_concluida) == 3) {
+            ultimo_id = entrega.id;
+        }
+    }
+
+    for (int i = 0; i < qnt; i++) {
+        entrega.id = ultimo_id + 1;
+        printf("Digite o tempo estimado em horas para a entrega:\n");
+        scanf("%d", &entrega.tempo_estimado);
+        entrega.foi_concluida = 0;
+        getchar();
+        printf("Digite o endereco de Origem da entrega: ");
+        fgets(entrega.origem, sizeof(entrega.origem), stdin);
+
+        // Remover o '\n' do final da string, se presente
+        size_t len = strlen(entrega.origem);
+        if (len > 0 && entrega.origem[len - 1] == '\n') {
+            entrega.origem[len - 1] = '\0';
+        }
+        // Remove espaco do final
+        if (len > 1 && entrega.origem[len - 2] == ' ') {
+            entrega.origem[len - 2] = '\0';
+        }
+
+        printf("Digite o endereco de Destino da Entrega: ");
+        fgets(entrega.destino, sizeof(entrega.destino), stdin);
+
+        // Remover o '\n' do final da string, se presente
+        len = strlen(entrega.destino);
+        if (len > 0 && entrega.destino[len - 1] == '\n') {
+            entrega.destino[len - 1] = '\0';
+        }
+        // Remove espaco do final
+        if (len > 1 && entrega.destino[len - 2] == ' ') {
+            entrega.destino[len - 2] = '\0';
+        }
+
+        fprintf(f, "%d,%d,%d\n%s\n%s\n", entrega.id, entrega.tempo_estimado, entrega.foi_concluida, entrega.origem, entrega.destino);
+        ultimo_id = entrega.id;
+    }
+
+    fclose(f);
+    printf("Entregas salvas com sucesso!\n");
 }
  
