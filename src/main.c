@@ -44,6 +44,7 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                     printf("Opção inválida!\n");
                 }
                 break;
+
             case 2:
                 // visualizar();
                 break;
@@ -51,7 +52,22 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                 // editar();
                 break;
             case 4:
-                // excluir();
+                printf("\nEscolha a entidade para excluir:\n");
+                printf("1 - Veículo\n2 - Funcionário\n3 - Entrega\n4 - Cliente\n");
+                scanf("%d", &entidade);
+                if (entidade == 1) {
+                    excluirVeiculo();
+                } else if (entidade == 2) {
+                    excluirFuncionario();
+                }
+                else if(entidade == 3){
+                    excluirEntrega();
+                } else if(entidade == 4) {
+                    excluirCliente();
+                }
+                else {
+                    printf("Opção inválida!\n");
+                }
                 break;
             case 5:
                executarEntrega();

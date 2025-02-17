@@ -1,7 +1,91 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "../include/structs.h"
 #include "../include/funcoes.h"
 
-void excluir() {
+void excluirVeiculo() {
+    FILE *f = fopen("dados/Veiculos.txt", "a+");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        system("pause");
+        exit(1);
+    }
+
+    FILE *tmp = fopen("dados/Tmp.txt", "w");
+    if (tmp == NULL) {
+        printf("Erro ao criar arquivo temporario\n");
+        system("pause");
+        exit(1);
+    }
+
+    printf("Insira o id do veiculo a ser excluido: ");
+    int id;
+    scanf("%d", &id);
+    Veiculo v;
+    int encontrou = 0;
+    while(fscanf(f, "%d,%19[^,],%f,%d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF){
+        if (id == v.id) {
+            encontrou = 1;
+        }
+        else {
+            fprintf(tmp, "%d,%s,%.2f,%d\n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
+            printf("%d\n", v.status);
+        }
+    }
+
+    fclose(f);
+    fclose(tmp);
+
+    if (encontrou) {
+        remove("dados/Veiculos.txt");
+        rename("dados/Tmp.txt", "dados/Veiculos.txt");
+        printf("Veiculo excluido!");
+    }
+    else {
+        remove("dados/Tmp.txt");
+        printf("Veiculo nao encontrado.\n");
+    }
+}
+
+void excluirFuncionario() {
+    FILE *f = fopen("dados/Funcionarios.txt", "a+");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        system("pause");
+        exit(1);
+    }
+
+    printf("Insira o id do funcionario a ser excluido: ");
+    int id;
+    scanf("%d", &id);
+    
+}
+
+void excluirCliente() {
+    FILE *f = fopen("dados/Clientes.txt", "a+");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        system("pause");
+        exit(1);
+    }
+
+    printf("Insira o id do cliente a ser excluido: ");
+    int id;
+    scanf("%d", &id);
+    
+}
+
+void excluirEntrega() {
+    FILE *f = fopen("dados/Entregas.txt", "a+");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        system("pause");
+        exit(1);
+    }
+
+    printf("Insira o id da entrega a ser excluida: ");
+    int id;
+    scanf("%d", &id);
     
 }

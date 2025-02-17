@@ -10,13 +10,22 @@ void addEntrega();
 void addCliente();
 
 // Excluir
-void excluir();
+void excluirVeiculo();
+void excluirFuncionario();
+void excluirEntrega();
+void excluirCliente();
 
 // Editar
-void editar();
+void editarVeiculo();
+void editarFuncionario();
+void editarEntrega();
+void editarCliente();
 
 // Visualizar
-void visualizar();
+void visualizarVeiculo();
+void visualizarFuncionario();
+void visualizarEntrega();
+void visualizarCliente();
 
 // Outras funções
 void executarEntrega();
