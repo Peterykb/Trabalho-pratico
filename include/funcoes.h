@@ -3,9 +3,22 @@
 
 //Declarações das funções usadas.
 
-//Adicionar 
-void AddVeiculo();
-void AddFuncionario();
+// Adicionar
+void addVeiculo();
+void addFuncionario();
+void addEntrega();
 
+// Deletar
+void deletar();
+
+// Editar
+void editar();
+
+// Visualizar
+void visualizar();
+
+// Outras funções
+void executarEntrega();
+void gerarRelatorio();
 
 #endif

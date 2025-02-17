@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/funcoes.h"
+#include <../include/funcoes.h>
 
 //terminal -> chcp 65001, compilar -> gcc main.c -o ..\bin\main.exe, executar -> ..\bin\main.exe
 
@@ -31,9 +31,9 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                 printf("1 - Veículo\n2 - Funcionário\n3 - Entrega\n");
                 scanf("%d", &entidade);
                 if (entidade == 1) {
-                    AddVeiculo();
+                    addVeiculo();
                 } else if (entidade == 2) {
-                    AddFuncionario();
+                    addFuncionario();
                 }
                 else if(entidade == 3){
                     //AddEntrega
