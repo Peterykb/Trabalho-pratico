@@ -99,10 +99,42 @@ void excluirCliente() {
         exit(1);
     }
 
-    printf("Insira o id do cliente a ser excluido: ");
+    FILE *tmp = fopen("dados/Temp.txt", "w");
+    if (tmp == NULL) {
+        printf("Erro ao criar arquivo temporário.\n");
+        fclose(f);
+        system("pause");
+        exit(1);
+    }
+
+    printf("Insira o id do cliente a ser excluído: ");
     int id;
     scanf("%d", &id);
+    Cliente cliente;
+    int encontrou = 0;
+    char nome[100];
+    char endereco[200];
+    int tipo_servico;
     
+    while (fscanf(f, "%d,%d,%99[^,],%199[^\n]\n", &cliente.id, &tipo_servico, nome, endereco) != EOF) {
+        if (id == cliente.id) {
+            encontrou = 1;
+        } else {
+            fprintf(tmp, "%d,%d,%s,%s\n", cliente.id, tipo_servico, nome, endereco);
+        }
+    }
+
+    fclose(f);
+    fclose(tmp);
+
+    if (encontrou) {
+        remove("dados/Clientes.txt");
+        rename("dados/Temp.txt", "dados/Clientes.txt");
+        printf("Cliente excluído!\n");
+    } else {
+        remove("dados/Temp.txt");
+        printf("Cliente não encontrado.\n");
+    }
 }
 
 void excluirEntrega() {
