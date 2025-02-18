@@ -97,8 +97,7 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                executarEntrega();
                 break;
             case 6:
-              // gerarRelatorio();
-              printf("Gerando relatório...");
+               gerarRelatorio();
                 break;
             default:
                 printf("Opção inválida!\n");
