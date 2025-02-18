@@ -44,7 +44,21 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                 break;
 
             case 2:
-                // visualizar();
+                printf("\nEscolha a entidade para visualizar:\n");
+                printf("1 - Veículo\n2 - Funcionário\n3 - Entrega\n4 - Cliente\n");
+                scanf("%d", &entidade);
+                if (entidade == 1) {
+                    visualizarVeiculo();
+                } else if (entidade == 2) {
+                    visualizarFuncionario();
+                } else if(entidade == 3){
+                    visualizarEntrega();
+                } else if(entidade == 4) {
+                    visualizarCliente();
+                } else {
+                    printf("Opção inválida!\n");
+                }
+                break;
                 break;
             case 3:
                 printf("\nEscolha a entidade para editar:\n");
