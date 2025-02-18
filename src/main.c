@@ -30,6 +30,7 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                 printf("\nEscolha a entidade para adicionar:\n");
                 printf("1 - Veículo\n2 - Funcionário\n3 - Entrega\n4 - Cliente\n");
                 scanf("%d", &entidade);
+                printf("%d", entidade);
                 if (entidade == 1) {
                     addVeiculo();
                 } else if (entidade == 2) {
@@ -82,7 +83,8 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                executarEntrega();
                 break;
             case 6:
-                gerarRelatorio();
+              // gerarRelatorio();
+              printf("Gerando relatório...");
                 break;
             default:
                 printf("Opção inválida!\n");

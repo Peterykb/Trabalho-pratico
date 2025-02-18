@@ -8,21 +8,22 @@
 //Função adicionar para todas as entidades.
 
 void addVeiculo(){
-    FILE *f = fopen("dados/Veiculos.txt", "a+");
+   FILE *f = fopen("dados/Veiculos.txt", "a+");
     int qnt = 0, ultimo_id = 0;
+    
     if(f == NULL){
         printf("Erro ao abrir o arquivo.\n");
         system("pause");
         exit(1);
     }
     Veiculo v;
-    while(fscanf(f, "%d,%s,%f,%d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF){
-        ultimo_id = v.id;
+    while(fscanf(f, "%d %s %f %d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF){
+       ultimo_id = v.id;
     }
 
     printf("ultimo id: %d\n", ultimo_id);
 
-    printf("Quantos veiculos deseja adicionar?\n");
+    printf("\nQuantos veiculos deseja adicionar?\n");
     scanf("%d", &qnt);
     
     
@@ -41,7 +42,8 @@ void addVeiculo(){
     }
     fclose(f);
     printf("\nVeiculo(s) salvo(s) com sucesso.\n");
-}
+
+    }
 
 void addFuncionario(){
     FILE *f = fopen("dados/Funcionarios.txt", "a+");

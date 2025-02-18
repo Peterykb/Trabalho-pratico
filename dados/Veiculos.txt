@@ -1,2 +1,3 @@
-2 carro 10.00 0
-3 moto 14.00 0
+1 carro 50.00 0
+2 moto 10.00 0
+3 caminhao 800.00 0

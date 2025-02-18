@@ -19,9 +19,7 @@ typedef struct
     char origem[200]; 
     char destino[200];
 } Entrega;
-typedef struct {
-     
-} EntregasConcluidas;
+
 typedef struct 
 {
     int id;
