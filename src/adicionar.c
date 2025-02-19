@@ -21,8 +21,6 @@ void addVeiculo(){
        ultimo_id = v.id;
     }
 
-    printf("ultimo id: %d\n", ultimo_id);
-
     printf("\nQuantos veiculos deseja adicionar?\n");
     scanf("%d", &qnt);
     
@@ -83,12 +81,7 @@ void addFuncionario(){
             func.nome[len - 2] = '\0';
         }
 
-        if (fprintf(f, "%d,%s\n", func.id, func.nome) < 0) {
-            printf("Erro ao salvar os dados. Tente novamente.\n");
-            i--;  // Repete a entrada
-            continue;
-        }
-
+        fprintf(f, "%d,%s\n", func.id, func.nome);
         ultimo_id = func.id;
     }
 
@@ -178,9 +171,9 @@ void addEntrega(){
         
     
     while (fgets(linha, sizeof(linha), f) != NULL) {
-        char linha2[200], linha3[200];
-        fgets(linha2, sizeof(linha2), f);
-        fgets(linha3, sizeof(linha3), f);
+        char origem[200], destino[200];
+        fgets(origem, sizeof(origem), f);
+        fgets(destino, sizeof(destino), f);
         // processa linha e separa numero e nome
         if (sscanf(linha, "%d,%d,%d", &entrega.id, &entrega.tempo_estimado, &entrega.foi_concluida) == 3) {
             ultimo_id = entrega.id;
@@ -196,7 +189,7 @@ void addEntrega(){
         printf("Digite o endereco de Origem da entrega: ");
         fgets(entrega.origem, sizeof(entrega.origem), stdin);
 
-        // Remover o '\n' do final da string, se presente
+        // Remover o '\n' do final da string
         size_t len = strlen(entrega.origem);
         if (len > 0 && entrega.origem[len - 1] == '\n') {
             entrega.origem[len - 1] = '\0';
@@ -209,7 +202,7 @@ void addEntrega(){
         printf("Digite o endereco de Destino da Entrega: ");
         fgets(entrega.destino, sizeof(entrega.destino), stdin);
 
-        // Remover o '\n' do final da string, se presente
+        // Remover o '\n' do final da string
         len = strlen(entrega.destino);
         if (len > 0 && entrega.destino[len - 1] == '\n') {
             entrega.destino[len - 1] = '\0';

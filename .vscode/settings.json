@@ -58,7 +58,8 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "structs.h": "c",
-    "funcoes.h": "c"
+    "funcoes.h": "c",
+    "numbers": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

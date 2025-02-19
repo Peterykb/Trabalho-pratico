@@ -21,8 +21,15 @@ void gerarRelatorio() {
         fgets(origem, sizeof(origem), fent);
         fgets(destino, sizeof(destino), fent);
 
-        origem[strcspn(origem, "\n")] = 0;
-        destino[strcspn(destino, "\n")] = 0;
+        // remove \n do final da string
+        size_t len = strlen(origem);
+        if (len > 0 && origem[len - 1] == '\n') {
+            origem[len - 1] = '\0';
+        }
+        len = strlen(destino);
+        if (len > 0 && destino[len - 1] == '\n') {
+            destino[len - 1] = '\0';
+        }
 
         fscanf(fent, "%d,%d,%d,%d", &idfunc, &idcliente, &idveiculo, &tempototal);
 
@@ -30,8 +37,8 @@ void gerarRelatorio() {
         printf("Id do funcionario: %d\n", idfunc);
         printf("Id do cliente: %d\n", idcliente);
         printf("Id do veiculo: %d\n", idveiculo);
-        printf("Origem: %s", origem);
-        printf("Destino: %s", destino);
+        printf("Origem: %s\n", origem);
+        printf("Destino: %s\n", destino);
         printf("Tempo gasto para a entrega: %d\n", tempototal);
         printf("--------------------END--------------------\n");
     }

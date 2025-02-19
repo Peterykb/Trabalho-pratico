@@ -20,12 +20,32 @@ void executarEntrega() {
     int idEscolhido, idFuncionario, idVeiculo, idCliente, encontrou = 0;
     int tempoTotal;
 
+    int qtdVeiculosLivres = 0;
+    while (fscanf(fVeiculos, "%d,%[^,],%f,%d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF) {
+        if (v.status == 0)
+            qtdVeiculosLivres++;
+    }
+
+    rewind(fVeiculos);
+
+    if (qtdVeiculosLivres == 0) {
+        printf("Nenhum veiculo livre\n");
+        exit(1);
+    }
+
     printf("Entregas pendentes:\n");
     while (fscanf(fEntregas, "%d,%d,%d\n", &e.id, &e.tempo_estimado, &e.foi_concluida) != EOF) {
         fgets(e.origem, sizeof(e.origem), fEntregas);
         fgets(e.destino, sizeof(e.destino), fEntregas);
-        e.origem[strcspn(e.origem, "\n")] = 0;
-        e.destino[strcspn(e.destino, "\n")] = 0;
+        // remove \n do final da string
+        size_t len = strlen(e.origem);
+        if (len > 0 && e.origem[len - 1] == '\n') {
+            e.origem[len - 1] = '\0';
+        }
+        len = strlen(e.destino);
+        if (len > 0 && e.destino[len - 1] == '\n') {
+            e.destino[len - 1] = '\0';
+        }
         
         if (e.foi_concluida == 0) {
             printf("ID: %d | Origem: %s | Destino: %s\n", e.id, e.origem, e.destino);
@@ -50,14 +70,40 @@ void executarEntrega() {
     }
     rewind(fVeiculos);
     
-    printf("Digite o ID do veículo utilizado: ");
-    scanf("%d", &idVeiculo);
+    int veiculoValido = 0;
+    while (veiculoValido == 0) {
+        printf("Digite o ID do veículo utilizado: ");
+        scanf("%d", &idVeiculo);
+
+        while (fscanf(fVeiculos, "%d,%[^,],%f,%d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF) {
+            if (v.id == idVeiculo) {
+                if (v.status == 1) {
+                    printf("Veiculo ocupado!\n");
+                }
+                else {
+                    veiculoValido = 1;
+                }
+                break;
+            }
+        }
+        
+    }
+    
+    
 
     while (fscanf(fEntregas, "%d,%d,%d\n", &e.id, &e.tempo_estimado, &e.foi_concluida) != EOF) {
         fgets(e.origem, sizeof(e.origem), fEntregas);
         fgets(e.destino, sizeof(e.destino), fEntregas);
-        e.origem[strcspn(e.origem, "\n")] = 0;
-        e.destino[strcspn(e.destino, "\n")] = 0;
+        // remove \n do final da string
+        size_t len = strlen(e.origem);
+        if (len > 0 && e.origem[len - 1] == '\n') {
+            e.origem[len - 1] = '\0';
+        }
+        len = strlen(e.destino);
+        if (len > 0 && e.destino[len - 1] == '\n') {
+            e.destino[len - 1] = '\0';
+        }
+
         
         if (e.id == idEscolhido && e.foi_concluida == 0) {
             e.foi_concluida = 1;
@@ -83,9 +129,9 @@ void executarEntrega() {
 
     while (fscanf(fVeiculos, "%d,%[^,],%f,%d", &v.id, v.tipo_vec, &v.capacidade_carga, &v.status) != EOF) {
         if (v.id == idVeiculo) {
-            v.status = 0;
+            v.status = 1;
         }
-        fprintf(fTempVeiculos, "%d %s %.2f %d\n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
+        fprintf(fTempVeiculos, "%d,%s,%.2f,%d\n", v.id, v.tipo_vec, v.capacidade_carga, v.status);
     }
 
     fclose(fVeiculos);

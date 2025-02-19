@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <../include/funcoes.h>
 
-//terminal -> chcp 65001
-
-//Menu principal
-
 int main(){
     
 int instrucao, entidade;
@@ -30,7 +26,6 @@ printf("***Bem vindo ao Sistema de Entregas dos Correios***\n");
                 printf("\nEscolha a entidade para adicionar:\n");
                 printf("1 - Veículo\n2 - Funcionário\n3 - Entrega\n4 - Cliente\n");
                 scanf("%d", &entidade);
-                printf("%d", entidade);
                 if (entidade == 1) {
                     addVeiculo();
                 } else if (entidade == 2) {
